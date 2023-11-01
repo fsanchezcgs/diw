@@ -1,0 +1,38 @@
+.body {
+    background-color: #E9F1F7;
+}
+nav {
+    background-color: #E7DFC6;
+}
+.article {
+    background-color: #E7DFC6;
+}
+.myImages {
+    float: right;
+}
+.cont1 {
+    background-color: #2274A5;
+    margin-right: 0%;
+    width: 62%;
+    float: left;
+}
+.cont2 {
+    background-color: #2274A5;
+    margin-left: 0%;
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+.page {
+    position: relative;
+    min-height: 100vh;
+}
+.wrap {
+    padding-bottom: 2.5rem
+}
+.foot {
+    background-color: #E9F1F7;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,125 @@
+/* css for all html */
+
+body {
+  margin:0;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #E9F1F7;
+}
+
+.header {
+    overflow: hidden;
+    background-color: #E7DFC6;
+    padding: 20px 10px;
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.header a.active {
+    background-color: #2274A5;
+    color: white;
+}
+
+.header a.active:hover {
+    background-color: white;
+    color: #2274A5;
+}
+
+.header-right {
+    float: right;
+}
+
+footer{
+    margin-top: auto;
+    background-color: #E7DFC6;
+}
+
+/* css for the register html */
+
+.backImg {
+    background-image: url(./img/background.jpg);
+}
+
+.form {
+    background-color: rgb(34,116,165,0.9);
+    width: 40%;
+}
+
+.form label {
+    color: white;
+}
+
+.form label  a{
+    color: white;
+}
+
+.radio {
+    opacity: 0.6;
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + img {
+    cursor: pointer;
+}
+
+[type=radio]:hover + img {
+    opacity: 1;
+}
+
+[type=radio]:checked + img {
+    opacity: 1;
+}
+
+/* css for the index html */
+
+.article {
+    background-color: #E7DFC6;
+}
+
+.myImages {
+    float: right;
+}
+
+.cont1 {
+    background-color: #2274A5;
+    margin-right: 0%;
+    width: 62%;
+    float: left;
+}
+
+.cont2 {
+    background-color: #2274A5;
+    margin-left: 0%;
+    width: 30%;
+    float: right;
+    text-align: center;
+}

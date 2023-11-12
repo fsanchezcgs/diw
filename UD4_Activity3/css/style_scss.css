@@ -5,11 +5,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #E9F1F7;
 }
 
 .header {
   overflow: hidden;
   padding: 20px 10px;
+  background-color: #E7DFC6;
 }
 
 .header a {
@@ -49,6 +51,7 @@ body {
 
 footer {
   margin-top: auto;
+  background-color: #E7DFC6;
 }
 
 /* css for the register html */
@@ -59,7 +62,7 @@ footer {
 }
 
 .form {
-  background-color: rgba(34, 116, 165, 0.9);
+  background-color: #2274A5;
   width: 40%;
 }
 
@@ -142,5 +145,3 @@ footer {
 .blue {
   background-color: #2274A5;
 }
-
-/*# sourceMappingURL=style_scss.css.map */

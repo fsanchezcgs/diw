@@ -2,6 +2,9 @@
 
 @black: #000000;
 @white: #ffffff;
+@backgrund: #E9F1F7;
+@primary: #E7DFC6;
+@secondary: #2274A5;
 
 body {
     margin:0;
@@ -9,11 +12,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: @backgrund;
   }
   
   .header {
       overflow: hidden;
       padding: 20px 10px;
+      background-color: @primary;
   }
   
   .header a {
@@ -38,7 +43,7 @@ body {
   }
   
   .header a.active {
-      background-color: #2274A5;
+      background-color: @secondary;
       color: @white;
   }
   
@@ -53,6 +58,7 @@ body {
   
   footer{
       margin-top: auto;
+      background-color: @primary;
   }
   
   /* css for the register html */
@@ -64,7 +70,7 @@ body {
   }
   
   .form {
-      background-color: rgb(34,116,165,0.9);
+      background-color: @secondary;
       width: 40%;
   }
   
@@ -147,5 +153,5 @@ body {
   }
   
   .blue {
-      background-color: #2274A5;
+      background-color: @secondary;
   }

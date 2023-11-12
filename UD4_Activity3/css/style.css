@@ -6,11 +6,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #E9F1F7;
 }
 
 .header {
     overflow: hidden;
     padding: 20px 10px;
+    background-color: #E7DFC6;
 }
 
 .header a {
@@ -50,6 +52,7 @@ body {
 
 footer{
     margin-top: auto;
+    background-color: #E7DFC6;
 }
 
 /* css for the register html */

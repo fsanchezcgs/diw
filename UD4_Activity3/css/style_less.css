@@ -5,10 +5,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #E9F1F7;
 }
 .header {
   overflow: hidden;
   padding: 20px 10px;
+  background-color: #E7DFC6;
 }
 .header a {
   float: left;
@@ -41,6 +43,7 @@ body {
 }
 footer {
   margin-top: auto;
+  background-color: #E7DFC6;
 }
 /* css for the register html */
 .backImg {
@@ -49,7 +52,7 @@ footer {
   background-size: cover;
 }
 .form {
-  background-color: #2274a5;
+  background-color: #2274A5;
   width: 40%;
 }
 .form label {

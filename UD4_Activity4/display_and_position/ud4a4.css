@@ -1,0 +1,169 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#bottom_header {
+    min-width: 100%;
+    text-align: center;
+}
+
+#top_header {
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+.menu-element {
+    list-style-type: none;
+    display: inline;
+    margin: 5px;
+}
+
+.menu-element a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu-element a:hover {
+    text-decoration: underline;
+    color: orange;
+}
+
+#search {
+    margin: 5px 0;
+}
+
+.list-group {
+    text-align: center;
+}
+
+.list-group strong {
+    margin: 5px;
+}
+
+.menu2-element {
+    list-style-type: none;
+    margin: 5px;
+    text-align: center;
+}
+
+.list-group a {
+    color: black;
+    text-decoration: none;
+}
+
+.list-group a:hover {
+    color: black;
+    text-decoration: none;
+    text-decoration: underline;
+    color: orange;
+}
+
+#products-filter {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: lightgray;
+    position: sticky;
+    top: 0;
+}
+
+#product-listing li {
+    display: inline;
+    text-align: left;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+#load-more-products {
+    text-align: center;
+}
+
+#back-to-top {
+    position: fixed;
+    top: 95%;
+    left: 85%;
+}
+
+.footer {
+    text-align: center;
+    background-color: lightgray;
+}
+
+.footer li {
+    list-style-type: none;
+}
+
+@media (min-width: 800px) {
+    .menu-element {
+        margin: 20px;
+    }
+
+    #bottom_header {
+        display: inline;
+        min-width: 100%;
+        text-align: center;
+        margin: 8px 0;
+    }
+
+    #bottom_header div {
+        text-align: right;
+    }
+
+    #bottom_header ul {
+        text-align: center;
+    }
+
+    main div {
+        display: flex;
+    }
+
+    main aside {
+        width: 15%;
+    }
+
+    main section {
+        width: 85%;
+    }
+
+    .list-group {
+        margin: 0 40px;
+        margin-bottom: 10px;
+        list-style-type: none;
+        text-align: left;
+    }
+
+    .list-group strong {
+        margin-top: 10px;
+    }
+
+    .menu2-element {
+        text-align: left;
+        margin: 8px 20px;
+    }
+
+    #product-listing article {
+        display: inline;
+    }
+
+    .image-container {
+        margin-right: 2px;
+    }
+
+    .image-container img {
+        width: 442px;
+    }
+
+    #back-to-top {
+        top: 95%;
+        left: 95%;
+    }
+}

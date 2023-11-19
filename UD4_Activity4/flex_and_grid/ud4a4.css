@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #bottom_header {
@@ -170,7 +171,7 @@
 
     .menu2-element {
         text-align: left;
-        margin: 8px 10px;
+        margin: 8px 20px;
     }
 
     #product-listing li {

@@ -1,14 +1,19 @@
 let canvas;
 let context;
-let sound = document.querySelector("#boing");
+let x = document.getElementById('X');
+let y = document.getElementById('Y');
+
+let ball;
 
 canvas = document.getElementById('2d-animation-canvas');
 context = canvas.getContext('2d');
 
-var ballX = 60;
-var ballY = 60;
-var directionX = 2;
-var directionY = 2;
+let ballX = 60;
+let ballY = 60;
+let directionX = 2;
+let directionY = 2;
+showX();
+showY();
 
 function start() {
   function draw(x, y) {
@@ -24,15 +29,15 @@ function start() {
 
   draw(ballX, ballY);
 
-  setInterval(function(){
+  ball = setInterval(function(){
     if (ballX > 310 || ballX < 0){
       directionX *= -1;
-      sound.play();
+      showX();
     }
 
     if (ballY < 0 || ballY > 210){
       directionY *= -1;
-      sound.play();
+      showY();
     }
 
     ballX += directionX;
@@ -41,4 +46,36 @@ function start() {
     draw(ballX, ballY);
 
   }, 35);
+}
+
+function stop() {
+  clearInterval(ball);
+}
+
+function xUp() {
+  directionX++;
+  showX();
+}
+
+function xDown() {
+  directionX--;
+  showX();
+}
+
+function yUp() {
+  directionY++;
+  showY();
+}
+
+function yDown() {
+  directionY--;
+  showY();
+}
+
+function showX() {
+  x.value = directionX;
+}
+
+function showY() {
+  y.value = directionY;
 }

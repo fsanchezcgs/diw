@@ -2,6 +2,7 @@ let canvas;
 let context;
 let x = document.getElementById('X');
 let y = document.getElementById('Y');
+let startButton = document.getElementById('start');
 
 let ball;
 
@@ -16,6 +17,7 @@ showX();
 showY();
 
 function start() {
+  startButton.disabled = true;
   function draw(x, y) {
     context.fillStyle = "green";
     context.beginPath();
@@ -50,6 +52,7 @@ function start() {
 
 function stop() {
   clearInterval(ball);
+  startButton.disabled = false;
 }
 
 function xUp() {

@@ -1,0 +1,235 @@
+/* css for all html */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  margin:0;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #E9F1F7;
+}
+
+header {
+    overflow: hidden;
+    padding: 20px 10px;
+    background-color: #E7DFC6;
+    font-size: 18px;
+}
+
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+    color: white;
+}
+
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active:hover {
+    color: #2274A5;
+}
+
+.active {
+    background-color: #2274A5;
+    color: white;
+}
+
+.active:hover {
+    background-color: white;
+    color: #2274A5;
+}
+
+.activeLogout {
+    background-color: #E9F1F7 !important;
+    color: #2274A5 !important;
+    border-color: #2274A5;
+}
+
+.activeLogout:hover {
+    background-color: #2274A5 !important;
+    color: #E9F1F7 !important;
+}
+
+.nav-link {
+    color: black;
+}
+
+#register, #login, #profile {
+    display: none;
+}
+
+footer{
+    margin-top: auto;
+    background-color: #E7DFC6;
+}
+
+/* css for the register html */
+
+:root {
+    --correct_color: #2ecc71;
+    --error-color: #e74c3c;
+}
+
+.backImg {
+    background-image: url(./../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#form {
+    background-color: rgb(34,116,165,0.9);
+    width: 400px;
+}
+
+#form h2 {
+    color: white;
+}
+
+#form a{
+    color: white;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.form-control.correct input {
+    border-color: var(--correct_color);
+}
+
+.form-control.error input {
+    border-color: var(--error-color);
+}
+
+.form-control small {
+    color: var(--error-color);
+    display: none;
+}
+
+.form-control.error small {
+    display: block;
+}
+
+.radio {
+    opacity: 0.6;
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + img {
+    cursor: pointer;
+}
+
+[type=radio]:hover + img {
+    opacity: 1;
+}
+
+[type=radio]:checked + img {
+    opacity: 1;
+}
+
+@media (min-width: 650px) {
+    #form {
+        width: 550px;
+    }
+}
+
+/* css for the index html */
+
+.myImage, .myImage img {
+    float: left;
+}
+
+.cont1 {
+    margin-right: 0%;
+    width: 62%;
+    float: left;
+}
+
+.cont1 a {
+    color: black;
+    text-decoration: none;
+}
+
+.cont2 {
+    margin-left: 0%;
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+
+.cont2 a {
+    color: black;
+    text-decoration: none;
+}
+
+/* css for the post html */
+
+.link {
+    color: black;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.userPicture {
+    border-radius: 50%;
+}
+
+.blue {
+    background-color: #2274A5;
+}
+
+/* Pop Up */
+
+.container-popup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.popup {
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 10% auto;
+    padding: 20px;
+    position: relative;
+    color: white;
+}
+
+.popup a {
+    background: crimson;
+    color: white;
+    text-decoration: none;
+    padding: 6px 10px;
+}
+
+.close-popup {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    cursor: pointer;
+}

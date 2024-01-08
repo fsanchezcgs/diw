@@ -55,7 +55,7 @@ header {
     color: black;
 }
 
-#register, #login, #profile {
+#register, #login, #profile, #settings {
     display: none;
 }
 

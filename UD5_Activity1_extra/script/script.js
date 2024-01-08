@@ -30,11 +30,13 @@ function createStorageLogged(e) {
 }
 
 function showUser() {
-    let request = dbLogged.transaction ("franciscoUser").objectStore("franciscoUser").getAll();
+    let requestUser = dbLogged.transaction ("franciscoUser").objectStore("franciscoUser").getAll();
 
-    request.onsuccess = ()=> {
-        let user = request.result;
+    requestUser.onsuccess = ()=> {
+        let user = requestUser.result;
         if(user.length != 0) {
+            let settings = document.querySelector("#settings");
+            settings.style.display = 'block';
             let profilePicture = document.querySelector("#profile");
             profilePicture.style.display = 'block';
             profilePicture.src += user[0]["userAvatar"] + ".jpg";
@@ -50,7 +52,7 @@ function showUser() {
         }
     }
 
-    request.onerror = ()=> {
+    requestUser.onerror = ()=> {
         console.table("There was an error");
     }
 }

@@ -45,7 +45,7 @@ function isRequired(inputArray) {
 
     inputArray.forEach((input) => {
         if(input.value.trim() === '') {
-            showIncorrect(input, `${prenNomInput(input)} is required`);
+            showIncorrect(input, ` is required`);
         } else {
             showCorrect(input);
             cont++;
@@ -79,7 +79,7 @@ function isEmailValid(input) {
         showCorrect(input);
         return true;
     } else {
-        let missatge = `${prenNomInput(input)} No te el format correcte`;
+        let missatge = ` is not in the correct format`;
         showIncorrect(input, missatge);
         return false;
     }
@@ -92,7 +92,7 @@ function isPwdValid(input) {
         showCorrect(input);
         return true;
     } else {
-        let missatge = `${prenNomInput(input)} No te el format correcte`;
+        let missatge = ` is not in the correct format`;
         showIncorrect(input, missatge);
         return false;
     }
@@ -100,7 +100,7 @@ function isPwdValid(input) {
 
 function checkPassword(input1, input2) {
     if(input1.value != input2.value) {
-        let missatge = `${prenNomInput(input2)} ha de ser igual a ${prenNomInput(input1)}`;
+        let missatge = ` must be equal to Password`;
         showIncorrect(input2, missatge);
         return false;
     } else {
@@ -119,10 +119,6 @@ function showIncorrect(input, missatge) {
 function showCorrect(input) {
     const formControl = input.parentElement;
     formControl.className = 'form-control correct';
-}
-
-function prenNomInput(input) {
-    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
 function radioValue(event) {
@@ -159,9 +155,13 @@ function storeUser(e) {
     let transactions = db.transaction(["franciscoUsers"], "readwrite");
     let storage = transactions.objectStore("franciscoUsers");
 
-    if(isRequired([name, email, pwd, pwd2]) && checkLength(pwd, 8, 25) && isEmailValid(email) && isPwdValid(pwd) && checkPassword(pwd, pwd2)) {
+    if(isRequired([name, email, pwd, pwd2]) && isEmailValid(email) && checkLength(pwd, 8, 25) && isPwdValid(pwd) && checkPassword(pwd, pwd2)) {
         const record = storage.add(obj);
         record.onsuccess = () => storeUserLogged(obj);
+        record.onerror = ()=> {
+            let missatge = ` it's already used`;
+            showIncorrect(email, missatge);
+        };
     }
 }
 

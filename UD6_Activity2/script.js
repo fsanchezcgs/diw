@@ -3,6 +3,7 @@ $(document).ready(function() {
     let number1 = 0;
     let number2 = 0;
     let score = 0;
+    let firstCard;
 
     // It generates a random number that can only be even
     let numberDivs = Math.floor(Math.random() * (24 - 14) + 14);
@@ -34,6 +35,7 @@ $(document).ready(function() {
         let p = $(e.target).html();
         if(number1 == 0) {
             number1 = $(p).text();
+            firstCard = $(e.target);
         } else if(number2 == 0) {
             number2 = $(p).text();
 
@@ -41,6 +43,7 @@ $(document).ready(function() {
                 score++;
             } else {
                 $(e.target).removeClass("checked");
+                firstCard.removeClass("checked");
             }
             number1 = 0;
             number2 = 0;

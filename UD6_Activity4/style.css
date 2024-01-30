@@ -2,11 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 .container {
-  width: 200px;
-  height: 500px;
+  width: 400px;
+  height: 900px;
   text-align: center;
   color: white;
   font-size: 18px;
@@ -16,12 +17,12 @@
 }
 
 .drag {
-  width: 30px;
-  height: 30px;
+  width: 100px;
+  height: 80px;
   margin: 5px;
   position: absolute;
-  border-radius: 5px;
-  border: 2px solid rgb(181, 105, 19);
+  /* border-radius: 5px; */
+  border: 1px solid black;
 }
 
 .red1 {
@@ -36,15 +37,15 @@
   background-color: rgb(75, 210, 91);;
 }
 
-.red {
+#red {
   background-color: rgb(233, 33, 33);
 }
 
-.blue {
+#blue {
   background-color: rgb(50, 33, 233);;
 }
 
-.green {
+#green {
   background-color: rgb(17, 212, 40);;
 }
 
@@ -60,4 +61,57 @@ main {
 
 #generate {
   height: 20px;
+}
+
+.postit-header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+.delete-postit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  border-width: 1px;
+}
+
+.drag textarea {
+  background-color: transparent;
+  width: 98px;
+  height: 65px;
+  resize: none;
+}
+
+.container-popup {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 10;
+}
+
+.popup {
+  background-color: #fff;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 10% auto;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.popup a {
+  background: crimson;
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
 }

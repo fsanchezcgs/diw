@@ -10,11 +10,18 @@
   <main>
     <button id="generate">Generate</button>
     <div class="box">
-      <div class="red container">Red: <span id="redCounter"></span></div>
-      <div class="blue container">Blue: <span id="blueCounter"></span></div>
-      <div class="green container">Green: <span id="greenCounter"></span></div>
-      <!-- <div class="blue container">Blue</div>
-      <div class="blue container">Blue</div> -->
+      <div id="red" class="container">To do: <span id="redCounter"></span></div>
+      <div id="blue" class="container">Doing: <span id="blueCounter"></span></div>
+      <div id="green" class="container">Done: <span id="greenCounter"></span></div>
+      <div class="container-popup">
+        <div class="popup">
+          <div class="content-popup">
+            <p>Are you sure you want to delete this post it?</p>
+            <button id="yes">Yes</button>
+            <button id="no">No</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

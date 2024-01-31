@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #212121;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+.box {
+  margin: 25px;
+}
+
+#artistName {
+  width: 400px;
+  height: 40px;
+  border-radius: 25px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #2a2a2a;
+  border: 1px solid #ffffff;
+}
+
+#bgetArtist {
+  width: 50px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1ED760;
+  cursor: pointer;
+}
+
+#results {
+  margin-top: 2em;
+}
+
+form label {
+  display: inline-block;
+  width: 30%;
+}

@@ -16,6 +16,8 @@ Spotify.prototype.getArtist = function (artist) {
       Authorization: "Bearer " + access_token,
     },
   }).done(function (response) {
+    let structure = `<div class="card"><h1>${response.artists.items[0].name}</h1><h2>Popularity: ${response.artists.items[0].popularity}</h2><img src="Panamiguel.png" alt=""></div>`;
+    $("#resultsArtist").html(structure);
     console.log(response);
   });
 };

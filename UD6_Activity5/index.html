@@ -6,16 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify API data</title>
     <link rel="stylesheet" href="css/site.css" />
-    <link rel="icon" sizes="32x32" type="image/png" href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png">
+    <link
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+      href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png"
+    />
   </head>
   <body>
     <main>
-      <div class="box">
-        <h1>Search by artist:</h1>
-        <input type="text" placeholder="Search artist" id="artistName" />
-        <button id="bgetArtist">Search</button>
+      <div>
+        <div class="box">
+          <h1>Search by artist:</h1>
+          <input class="name" type="text" placeholder="Search artist" id="artistName" />
+          <button id="bgetArtist" class="bget">Search</button>
+        </div>
+        <div id="resultsArtist" class="results">
+          <!-- <div class="card">
+            <h1>Name</h1>
+            <h2>Popularity: </h2>
+            <img src="Panamiguel.png" alt="">
+          </div> -->
+        </div>
       </div>
-      <div id="results"></div>
+      <div>
+        <div class="box">
+          <h1>Search by album:</h1>
+          <input class="name" type="text" placeholder="Search artist" id="albumName" />
+          <button id="bgetAlbum" class="bget">Search</button>
+        </div>
+        <div id="resultsAlbum" class="results"></div>
+      </div>
     </main>
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"

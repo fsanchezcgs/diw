@@ -16,17 +16,18 @@ Spotify.prototype.getArtist = function (artist) {
       Authorization: "Bearer " + access_token,
     },
   }).done(function (response) {
-    let structure = "";
+    let structure = "<h1>Artists</h1>";
     console.log(response);
-    // response.artists.items.forEach((artist) => {
-    //   let image;
-    //   if (artist.images.length != 0) {
-    //     image = artist.images[1].url;
-    //   } else {
-    //     image = "default_pfp.png";
-    //   }
-    //   structure += `<div class="card"><h1>${artist.name}</h1><h2>Popularity: ${artist.popularity}</h2><img src="${image}" alt=""></div>`;
-    // });
+    response.artists.items.forEach((artist) => {
+      let image;
+      if (artist.images.length != 0) {
+        image = artist.images[1].url;
+      } else {
+        image = "default_pfp.png";
+      }
+      structure += `<div class="card"><h1>${artist.name}</h1><h2>Popularity: ${artist.popularity}</h2><img src="${image}" alt=""></div>`;
+    });
+    structure += "<h1>Tracks</h1>";
     response.tracks.items.forEach((track) => {
       let image;
       if (track.album.images.length != 0) {

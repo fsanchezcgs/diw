@@ -13,37 +13,40 @@ body {
 main {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .box {
-  margin: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
-.name {
-  width: 350px;
-  height: 40px;
-  border-radius: 25px;
-  padding: 15px;
+#artistName {
   margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 15px;
+  width: 250px;
+  height: 40px;
   background-color: #2a2a2a;
-  border: 1px solid #ffffff;
   color: #ffffff;
   font-size: large;
+  border: 1px solid #ffffff;
+  border-radius: 25px;
 }
 
-.bget {
-  height: 38px;
+#bgetArtist {
+  margin-left: 5px;
   padding: 10px;
+  height: 38px;
+  background-color: #1ed760;
+  font-size: large;
   border: none;
   border-radius: 10px;
-  background-color: #1ED760;
   cursor: pointer;
-  font-size: large;
 }
 
-.results {
-  margin-top: 2em;
+#results {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,14 +54,17 @@ main {
 }
 
 .card {
+  margin: 10px;
+  padding: 10px;
+  width: 330px;
   background-color: #191919;
   text-align: center;
+  border: 1px solid #1ed760;
   border-radius: 10px;
-  border: 1px solid #1ED760;
-  width: 350px;
 }
 
-form label {
-  display: inline-block;
-  width: 30%;
+.card img {
+  margin-top: 10px;
+  width: 300px;
+  border-radius: 10px;
 }

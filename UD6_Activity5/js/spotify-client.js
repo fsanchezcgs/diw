@@ -11,14 +11,32 @@ function Spotify() {
 Spotify.prototype.getArtist = function (artist) {
   $.ajax({
     type: "GET",
-    url: this.apiUrl + "v1/search?type=artist&q=" + artist,
+    url: this.apiUrl + "v1/search?type=artist,track&q=" + artist,
     headers: {
       Authorization: "Bearer " + access_token,
     },
   }).done(function (response) {
-    let structure = `<div class="card"><h1>${response.artists.items[0].name}</h1><h2>Popularity: ${response.artists.items[0].popularity}</h2><img src="Panamiguel.png" alt=""></div>`;
-    $("#resultsArtist").html(structure);
+    let structure = "";
     console.log(response);
+    // response.artists.items.forEach((artist) => {
+    //   let image;
+    //   if (artist.images.length != 0) {
+    //     image = artist.images[1].url;
+    //   } else {
+    //     image = "default_pfp.png";
+    //   }
+    //   structure += `<div class="card"><h1>${artist.name}</h1><h2>Popularity: ${artist.popularity}</h2><img src="${image}" alt=""></div>`;
+    // });
+    response.tracks.items.forEach((track) => {
+      let image;
+      if (track.album.images.length != 0) {
+        image = track.album.images[1].url;
+      } else {
+        image = "default_pfp.png";
+      }
+      structure += `<div class="card"><h1>${track.name}</h1><h2>Popularity: ${track.popularity}</h2><img src="${image}" alt=""></div>`;
+    });
+    $("#results").html(structure);
   });
 };
 

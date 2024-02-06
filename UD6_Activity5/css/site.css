@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #212121;
+  background-color: #403e3e;
   color: #ffffff;
   font-family: sans-serif;
 }
@@ -27,7 +27,7 @@ main {
   margin-top: 15px;
   margin-bottom: 10px;
   padding: 15px;
-  width: 250px;
+  width: 300px;
   height: 40px;
   background-color: #2a2a2a;
   color: #ffffff;
@@ -36,41 +36,52 @@ main {
   border-radius: 25px;
 }
 
-#bgetArtist {
-  margin-left: 5px;
-  padding: 10px;
-  height: 38px;
-  background-color: #1ed760;
-  font-size: large;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 #results {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
-#results h1 {
+.subBox {
+  text-align: center;
+}
+
+.title {
   margin-top: 5px;
   margin-bottom: 5px;
+  color: rgb(35, 219, 35);
+}
+
+span {
+  margin-top: 5px;
+  margin-left: 5px;
+  align-self: flex-start;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 10px;
   padding: 10px;
   width: 330px;
   background-color: #191919;
   text-align: center;
-  border: 1px solid #1ed760;
   border-radius: 10px;
 }
 
-.card img {
+.clickMe {
   margin-top: 10px;
   width: 300px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+@media (min-width: 720px) {
+  #results {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

@@ -15,30 +15,37 @@ Spotify.prototype.getArtist = function (artist) {
     headers: {
       Authorization: "Bearer " + access_token,
     },
-  }).done(function (response) {
-    let structure = "<h1>Artists</h1>";
-    console.log(response);
-    response.artists.items.forEach((artist) => {
-      let image;
-      if (artist.images.length != 0) {
-        image = artist.images[1].url;
-      } else {
-        image = "default_pfp.png";
-      }
-      structure += `<div class="card"><h1>${artist.name}</h1><h2>Popularity: ${artist.popularity}</h2><img src="${image}" alt=""></div>`;
+  })
+    .done(function (response) {
+      let structure = "";
+      console.log(response);
+      response.artists.items.forEach((artist) => {
+        let image;
+        if (artist.images.length != 0) {
+          image = artist.images[1].url;
+        } else {
+          image = "default_pfp.png";
+        }
+        structure += `<div class="card"><h1>${artist.name}</h1><h2>Popularity: ${artist.popularity}</h2><img src="${image}" id="${artist.id}" class="clickMe"><span>Type: Artist</span></div>`;
+      });
+      response.tracks.items.forEach((track) => {
+        let image;
+        if (track.album.images.length != 0) {
+          image = track.album.images[1].url;
+        } else {
+          image = "default_pfp.png";
+        }
+        structure += `<div class="card"><h1>${track.name}</h1><h2>Popularity: ${track.popularity}</h2><img src="${image}" class="clickMe"><span>Type: Track</span></div>`;
+      });
+      $("#results").html(structure);
+      $(".clickMe").on("click", function (e) {
+        let spotify = new Spotify();
+        spotify.getArtistById(e.target.id);
+      });
+    })
+    .fail(function () {
+      $("#results").html("");
     });
-    structure += "<h1>Tracks</h1>";
-    response.tracks.items.forEach((track) => {
-      let image;
-      if (track.album.images.length != 0) {
-        image = track.album.images[1].url;
-      } else {
-        image = "default_pfp.png";
-      }
-      structure += `<div class="card"><h1>${track.name}</h1><h2>Popularity: ${track.popularity}</h2><img src="${image}" alt=""></div>`;
-    });
-    $("#results").html(structure);
-  });
 };
 
 //Search the albums of an artist, given the id of the artist
@@ -50,7 +57,19 @@ Spotify.prototype.getArtistById = function (artistId) {
       Authorization: "Bearer " + access_token,
     },
   }).done(function (response) {
+    let structure = "";
     console.log(response);
+    response.items.forEach((album) => {
+      let image;
+      if (album.images.length != 0) {
+        image = album.images[1].url;
+      } else {
+        image = "default_pfp.png";
+      }
+      structure += `<div class="card"><h1>${album.name}</h1><h2>Total Tracks: ${album.total_tracks}</h2><img src="${image}" id="${album.id}" class="clickMe"><span>Release Date: ${album.release_date}</span></div>`;
+    });
+    $("#results").html(structure);
+    $("#artistName").val("");
   });
 };
 
@@ -73,11 +92,7 @@ $(function () {
 
   let spotify = new Spotify();
 
-  $("#bgetArtist").on("click", function () {
+  $("#artistName").on("keyup", function () {
     spotify.getArtist($("#artistName").val());
-  });
-
-  $("#results").on("click", ".artistId", function () {
-    spotify.getArtistById($(this).attr("data-id"));
   });
 });

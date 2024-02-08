@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{pageTitle}}</h2>
+      <ul>
+        <li v-for="(posta, index) in posts">{{posta.title}} {{posta.content}} <button>edit</button><button v-on:click="insertPost(index)">delete</button></li>
+      </ul>
+      <form>
+        <input v-model="post.title" type="text" name="title" />
+        <input v-model="post.content" type="text" name="content" />
+        <button v-on:click="insertPost">Insert</button>
+      </form>
+      <div>{{post.title}}</div>
+      <div>{{post.content}}</div>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      let app = createApp({
+        data() {
+          return {
+            pageTitle: "Tile provisional",
+            post: {
+              title: "",
+              content: "",
+            },
+            posts: [],
+          };
+        },
+        methods: {
+          insertPost: function (e) {
+            e.preventDefault();
+            this.posts.push({title: this.post.title, content: this.post.content});
+          },
+          edit: function (e) {
+            // e.preventDefault();
+            // this.posts.push({title: this.post.title, content: this.post.content});
+          },
+          delete: function (number) {
+            this.posts.slice(number-1, number+1)
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

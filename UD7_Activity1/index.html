@@ -3,51 +3,220 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Doggie</title>
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="img/logoIcon.png" />
   </head>
-  <body>
-    <div id="app">
-      <h2>{{pageTitle}}</h2>
-      <ul>
-        <li v-for="(posta, index) in posts">{{posta.title}} {{posta.content}} <button>edit</button><button v-on:click="insertPost(index)">delete</button></li>
-      </ul>
-      <form>
-        <input v-model="post.title" type="text" name="title" />
-        <input v-model="post.content" type="text" name="content" />
-        <button v-on:click="insertPost">Insert</button>
-      </form>
-      <div>{{post.title}}</div>
-      <div>{{post.content}}</div>
-    </div>
-    <script>
-      const { createApp } = Vue;
+  <body class="bg-light">
+    <header class="bg-primary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="img/logoDoggie.png" width="150px" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNavDropdown"
+          >
+            <ul class="navbar-nav d-flex align-items-center">
+              <li class="nav-item">
+                <a
+                  class="nav-link active rounded-2"
+                  aria-current="page"
+                  href="index.html"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="html/admin.html">Admin</a>
+              </li>
+              <li class="nav-item" id="settings">
+                <a class="nav-link" href="html/settings.html">Settings</a>
+              </li>
+              <li class="nav-item" id="login">
+                <a class="nav-link" href="html/login.html">Log in</a>
+              </li>
+              <li class="nav-item" id="register">
+                <a class="nav-link" href="html/register.html">Register</a>
+              </li>
+              <li class="nav-item">
+                <img
+                  src="img/"
+                  width="50px"
+                  id="profile"
+                  class="rounded-5 p-0 nav-link ms-2"
+                />
+              </li>
+              <li class="nav-item" id="user_name"></li>
+              <li class="nav-item" id="logout"></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div
+        class="cont1 container g-0 p-3 my-3 ms-lg-5 ms-md-4 rounded-4 bg-secondary"
+      >
+        <div class="row g-0 m-3 justify-content-center">
+          <a
+            href="html/post.html"
+            class="bg-primary col-lg-11 d-lg-flex rounded-3"
+          >
+            <img
+              src="img/justACommonDog.jpg"
+              width="280px"
+              class="m-2 me-sm-3 rounded-2"
+            />
+            <div class="ms-sm-3">
+              <h4>Post number one</h4>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum
+                harum vero veniam aliquid accusantium ab aperiam placeat tempora
+                aspernatur quo rerum deserunt fuga dolorem modi, corporis esse
+                quod maiores voluptatum.
+              </p>
+            </div>
+            <div class="mt-lg-auto ms-lg-auto myImage">
+              <img src="img/likeIcon.png" width="30px" class="m-1" />
+            </div>
+          </a>
+        </div>
 
-      let app = createApp({
-        data() {
-          return {
-            pageTitle: "Tile provisional",
-            post: {
-              title: "",
-              content: "",
-            },
-            posts: [],
-          };
-        },
-        methods: {
-          insertPost: function (e) {
-            e.preventDefault();
-            this.posts.push({title: this.post.title, content: this.post.content});
-          },
-          edit: function (e) {
-            // e.preventDefault();
-            // this.posts.push({title: this.post.title, content: this.post.content});
-          },
-          delete: function (number) {
-            this.posts.slice(number-1, number+1)
-          },
-        },
-      }).mount("#app");
-    </script>
+        <div class="row g-0 m-3 justify-content-center">
+          <a
+            href="html/post.html"
+            class="bg-primary col-lg-11 d-xl-flex rounded-3"
+          >
+            <img
+              src="img/justACommonDog.jpg"
+              width="280px"
+              class="m-2 me-sm-3 rounded-2"
+            />
+            <div class="ms-sm-3">
+              <h4>Post number two</h4>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum
+                harum vero veniam aliquid accusantium ab aperiam placeat tempora
+                aspernatur quo rerum deserunt fuga dolorem modi, corporis esse
+                quod maiores voluptatum.
+              </p>
+            </div>
+            <div class="mt-lg-auto ms-lg-auto myImage">
+              <img src="img/likeIcon.png" width="30px" class="m-1" />
+            </div>
+          </a>
+        </div>
+
+        <div class="row g-0 m-3 justify-content-center">
+          <a
+            href="html/post.html"
+            class="bg-primary col-lg-11 d-lg-flex rounded-3"
+          >
+            <img
+              src="img/justACommonDog.jpg"
+              width="280px"
+              class="m-2 me-sm-3 rounded-2"
+            />
+            <div class="ms-sm-3">
+              <h4>Post number three</h4>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum
+                harum vero veniam aliquid accusantium ab aperiam placeat tempora
+                aspernatur quo rerum deserunt fuga dolorem modi, corporis esse
+                quod maiores voluptatum.
+              </p>
+            </div>
+            <div class="mt-lg-auto ms-lg-auto myImage">
+              <img src="img/likeIcon.png" width="30px" class="m-1" />
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="cont2 filters container g-0 p-3 my-3 me-xl-5 me-md-4 rounded-4 bg-secondary"
+      >
+        <div class="row g-0 justify-content-center">
+          <div class="bg-primary col-xl-3 rounded-3">
+            <h1>Filters</h1>
+          </div>
+        </div>
+
+        <div class="row g-0 justify-content-center">
+          <div class="bg-primary col-xl-3 rounded-3 m-3">
+            <h1>From</h1>
+          </div>
+
+          <div class="bg-primary col-xl-5 rounded-3 m-3">
+            <input type="date" class="py-2 px-4 mt-1" />
+          </div>
+        </div>
+
+        <div class="row g-0 justify-content-center">
+          <div class="bg-primary col-xl-3 rounded-3 m-3">
+            <h1>Until</h1>
+          </div>
+
+          <div class="bg-primary col-xl-5 rounded-3 m-3">
+            <input type="date" class="py-2 px-4 mt-1" />
+          </div>
+        </div>
+
+        <div class="row g-0 justify-content-center">
+          <div class="bg-primary col-xl-3 rounded-3 m-3">
+            <h1>Author</h1>
+          </div>
+
+          <div class="bg-primary col-xl-5 rounded-3 m-3">
+            <input type="text" class="py-2 mt-1" />
+          </div>
+        </div>
+
+        <div class="row g-0 justify-content-center">
+          <div class="bg-primary col-xl-3 rounded-3 m-3">
+            <h1>Topic</h1>
+          </div>
+
+          <div class="bg-primary col-xl-5 rounded-3 m-3">
+            <input type="text" class="py-2 mt-1" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer text-center text-lg-start text-muted bg-primary">
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
+        <div class="me-5 d-none d-lg-block">
+          <span>Get connected with us on social networks:</span>
+        </div>
+
+        <div>
+          <a href="#" class="me-4 text-reset"><i>Facebook</i></a>
+          <a href="#" class="me-4 text-reset"><i>Twitter</i></a>
+          <a href="#" class="me-4 text-reset"><i>Instagram</i></a>
+        </div>
+      </section>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

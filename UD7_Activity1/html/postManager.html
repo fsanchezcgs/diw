@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{pageTitle}}</h2>
+      <form>
+        <input v-model="post.title" type="text" name="title" />
+        <textarea
+          v-model="post.content"
+          maxlength="750"
+          name="content"
+        ></textarea>
+        <button v-on:click="insertPost" v-if="insert">Insert</button>
+        <button v-on:click="updatePost" v-else="insert">Update</button>
+      </form>
+      <ul>
+        <li v-for="(posta, index) in posts">
+          {{posta.title}} {{posta.content}} {{index}}
+          <button v-on:click="editPost(index)">Edit</button>
+          <button v-on:click="deletePost(index)">Delete</button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      let app = createApp({
+        data() {
+          return {
+            pageTitle: "Create Post",
+            post: {
+              title: "",
+              content: "",
+              image: "",
+              author: "",
+              raiting: "",
+              status: "draft",
+              creationDate: "",
+              publicationDate: null,
+            },
+            posts: [],
+            insert: true,
+            currentPost: 0,
+          };
+        },
+        methods: {
+          insertPost: function (e) {
+            e.preventDefault();
+            this.posts.push({
+              title: this.post.title,
+              content: this.post.content,
+            });
+            this.post.title = "";
+            this.post.content = "";
+          },
+          editPost: function (index) {
+            this.pageTitle = "Edit Post";
+            this.insert = false;
+            this.currentPost = index;
+          },
+          updatePost: function (e) {
+            e.preventDefault();
+            let editedPost = {
+              title: this.post.title,
+              content: this.post.content,
+            };
+            this.posts.splice(this.currentPost, 1, editedPost);
+            this.insert = true;
+            this.currentPost = 0;
+            this.pageTitle = "Create Post";
+            this.post.title = "";
+            this.post.content = "";
+          },
+          deletePost: function (index) {
+            this.posts.splice(index, 1);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

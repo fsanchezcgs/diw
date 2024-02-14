@@ -1,52 +1,7 @@
-let indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB ||
-  window.shimIndexedDB;
 const form = document.getElementById("form");
 let userAvatar;
-let db;
 
-function startDb() {
-  form.addEventListener("submit", storeUser);
-
-  let request = indexedDB.open("franciscoUserData");
-
-  request.addEventListener("error", showError);
-  request.addEventListener("success", start);
-  request.addEventListener("upgradeneeded", createStorage);
-}
-
-function startDbLogged() {
-  let request = indexedDB.open("franciscoLoggedUser");
-
-  request.addEventListener("error", showError);
-  request.addEventListener("success", startLogged);
-  request.addEventListener("upgradeneeded", createStorageLogged);
-}
-
-function showError(e) {
-  alert("We have an error: " + e.code + " / " + e.message);
-}
-
-function start(e) {
-  db = e.target.result;
-  console.log("working ", db);
-}
-
-function createStorage(e) {
-  let database = e.target.result;
-  let storage = database.createObjectStore("franciscoUsers", {
-    keyPath: "id",
-    autoIncrement: true,
-  });
-  storage.createIndex("userName", "userName", { unique: false });
-  storage.createIndex("userEmail", "userEmail", { unique: true });
-  storage.createIndex("userPwd", "userPwd", { unique: false });
-  storage.createIndex("userAdmin", "userAdmin", { unique: false });
-  storage.createIndex("userAvatar", "userAvatar", { unique: false });
-}
+form.addEventListener("submit", storeUser);
 
 function isRequired(inputArray) {
   let cont = 0;
@@ -198,5 +153,3 @@ function storeUserLogged(obj) {
     }
   };
 }
-
-window.addEventListener("load", startDb);

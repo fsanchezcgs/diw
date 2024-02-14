@@ -3,30 +3,110 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Doggie</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./../css/custom.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <link rel="icon" href="./../img/logoIcon.png" />
   </head>
   <body>
-    <div id="app">
-      <h2>{{pageTitle}}</h2>
-      <form>
-        <input v-model="post.title" type="text" name="title" />
-        <textarea
-          v-model="post.content"
-          maxlength="750"
-          name="content"
-        ></textarea>
-        <button v-on:click="insertPost" v-if="insert">Insert</button>
-        <button v-on:click="updatePost" v-else="insert">Update</button>
-      </form>
-      <ul>
-        <li v-for="(posta, index) in posts">
-          {{posta.title}} {{posta.content}} {{index}}
-          <button v-on:click="editPost(index)">Edit</button>
-          <button v-on:click="deletePost(index)">Delete</button>
-        </li>
-      </ul>
-    </div>
+    <header class="bg-primary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./../index.html"
+            ><img src="./../img/logoDoggie.png" width="150px"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNavDropdown"
+          >
+            <ul class="navbar-nav d-flex align-items-center">
+              <li class="nav-item">
+                <a
+                  class="nav-link active rounded-2"
+                  aria-current="page"
+                  href="./../index.html"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="nav-item" id="admin">
+                <a class="nav-link" href="./admin.html">Admin</a>
+              </li>
+              <li class="nav-item" id="settings">
+                <a class="nav-link" href="./settings.html">Settings</a>
+              </li>
+              <li class="nav-item" id="login">
+                <a class="nav-link" href="./../html/login.html">Log in</a>
+              </li>
+              <li class="nav-item" id="register">
+                <a class="nav-link" href="./register.html">Register</a>
+              </li>
+              <li class="nav-item">
+                <img
+                  src="./../img/"
+                  width="50px"
+                  id="profile"
+                  class="rounded-5 p-0 nav-link ms-2"
+                />
+              </li>
+              <li class="nav-item" id="user_name"></li>
+              <li class="nav-item" id="logout"></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div id="app">
+        <h2>{{pageTitle}}</h2>
+        <form>
+          <input v-model="post.title" type="text" name="title" />
+          <textarea
+            v-model="post.content"
+            maxlength="750"
+            name="content"
+          ></textarea>
+          <button v-on:click="insertPost" v-if="insert">Insert</button>
+          <button v-on:click="updatePost" v-else="insert">Update</button>
+        </form>
+        <ul>
+          <li v-for="(posta, index) in posts">
+            {{posta.title}} {{posta.content}} {{index}}
+            <button v-on:click="editPost(index)">Edit</button>
+            <button v-on:click="deletePost(index)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="footer text-center text-lg-start text-muted">
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
+        <div class="me-5 d-none d-lg-block">
+          <span>Get connected with us on social networks:</span>
+        </div>
+
+        <div>
+          <a href="#" class="me-4 text-reset"><i>Facebook</i></a>
+          <a href="#" class="me-4 text-reset"><i>Twitter</i></a>
+          <a href="#" class="me-4 text-reset"><i>Instagram</i></a>
+        </div>
+      </section>
+    </footer>
     <script>
       const { createApp } = Vue;
 
@@ -55,6 +135,12 @@
             this.posts.push({
               title: this.post.title,
               content: this.post.content,
+              image: this.post.image,
+              author: this.post.author,
+              raiting: this.post.raiting,
+              status: "draft",
+              creationDate: this.post.creationDate,
+              publicationDate: null,
             });
             this.post.title = "";
             this.post.content = "";
@@ -69,6 +155,12 @@
             let editedPost = {
               title: this.post.title,
               content: this.post.content,
+              image: this.posts[thiss.currentPost].image,
+              author: this.posts[thiss.currentPost].author,
+              raiting: this.posts[thiss.currentPost].raiting,
+              status: this.posts[thiss.currentPost].status,
+              creationDate: this.posts[thiss.currentPost].creationDate,
+              publicationDate: this.posts[thiss.currentPost].publicationDate,
             };
             this.posts.splice(this.currentPost, 1, editedPost);
             this.insert = true;

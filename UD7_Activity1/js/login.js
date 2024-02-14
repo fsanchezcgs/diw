@@ -1,42 +1,5 @@
-let indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB ||
-  window.shimIndexedDB;
-let db;
-
-function startDb() {
-  form.addEventListener("submit", searchUsers);
-
-  let request = indexedDB.open("franciscoUserData");
-
-  request.addEventListener("error", showError);
-  request.addEventListener("success", start);
-  request.addEventListener("upgradeneeded", createStorage);
-}
-
-function showError(e) {
-  alert("We have an error: " + e.code + " / " + e.message);
-}
-
-function start(e) {
-  db = e.target.result;
-  console.log("working ", db);
-}
-
-function createStorage(e) {
-  let database = e.target.result;
-  let storage = database.createObjectStore("franciscoUsers", {
-    keyPath: "id",
-    autoIncrement: true,
-  });
-  storage.createIndex("userName", "userName", { unique: false });
-  storage.createIndex("userEmail", "userEmail", { unique: true });
-  storage.createIndex("userPwd", "userPwd", { unique: false });
-  storage.createIndex("userAdmin", "userAdmin", { unique: false });
-  storage.createIndex("userAvatar", "userAvatar", { unique: false });
-}
+const form = document.getElementById("form");
+form.addEventListener("submit", searchUsers);
 
 function searchUsers(e) {
   e.preventDefault();
@@ -141,5 +104,3 @@ function showCorrect(input) {
 function prenNomInput(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
-
-window.addEventListener("load", startDb);

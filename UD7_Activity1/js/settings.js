@@ -1,44 +1,12 @@
-let indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB ||
-  window.shimIndexedDB;
-let db;
 const container = document.getElementsByClassName("container-popup");
 const closePop = document.getElementsByClassName("close-popup");
 const updateUser = document.getElementById("updateUser");
 let userAvatar;
 
-function startDb() {
-  let request = indexedDB.open("franciscoUserData");
-
-  request.addEventListener("error", showError);
-  request.addEventListener("success", start);
-  request.addEventListener("upgradeneeded", createStorage);
-}
-
-function showError(e) {
-  alert("We have an error: " + e.code + " / " + e.message);
-}
-
 function start(e) {
   db = e.target.result;
   console.log("working ", db);
   collectUsers();
-}
-
-function createStorage(e) {
-  let database = e.target.result;
-  let storage = database.createObjectStore("franciscoUsers", {
-    keyPath: "id",
-    autoIncrement: true,
-  });
-  storage.createIndex("userName", "userName", { unique: false });
-  storage.createIndex("userEmail", "userEmail", { unique: true });
-  storage.createIndex("userPwd", "userPwd", { unique: false });
-  storage.createIndex("userAdmin", "userAdmin", { unique: false });
-  storage.createIndex("userAvatar", "userAvatar", { unique: false });
 }
 
 function collectUsers() {
@@ -271,5 +239,3 @@ function collectUsers() {
 function radioValue(event) {
   userAvatar = event;
 }
-
-window.addEventListener("load", startDb);

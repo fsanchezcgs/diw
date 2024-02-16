@@ -32,15 +32,6 @@
             id="navbarNavDropdown"
           >
             <ul class="navbar-nav d-flex align-items-center">
-              <li class="nav-item">
-                <a
-                  class="nav-link active rounded-2"
-                  aria-current="page"
-                  href="./../index.html"
-                >
-                  Home
-                </a>
-              </li>
               <li class="nav-item" id="admin">
                 <a class="nav-link" href="./admin.html">Admin</a>
               </li>
@@ -69,26 +60,48 @@
       </nav>
     </header>
 
-    <main class="container-fluid">
+    <main
+      class="container-fluid d-flex justify-content-center align-items-center"
+    >
       <div id="app">
-        <h2>{{pageTitle}}</h2>
-        <form>
-          <input v-model="post.title" type="text" name="title" />
+        <form
+          class="d-flex flex-column justify-content-center align-items-center mt-2"
+        >
+          <h2 class="m-2">{{pageTitle}}</h2>
+          <input v-model="post.title" type="text" name="title" class="m-1" />
           <textarea
             v-model="post.content"
-            maxlength="750"
+            maxlength="7F50"
             name="content"
+            class="m-1"
           ></textarea>
-          <button v-on:click="insertPost" v-if="insert">Insert</button>
-          <button v-on:click="updatePost" v-else="insert">Update</button>
+          <button
+            v-on:click="insertPost"
+            v-if="insert"
+            class="m-1 p-1 rounded-1"
+          >
+            Insert
+          </button>
+          <button
+            v-on:click="updatePost"
+            v-else="insert"
+            class="m-1 p-1 rounded-1"
+          >
+            Update
+          </button>
         </form>
-        <ul>
+        <ul class="m-1">
           <li v-for="(posta, index) in posts">
             {{posta.title}} {{posta.content}} {{index}}
-            <button v-on:click="editPost(index)">Edit</button>
-            <button v-on:click="deletePost(index)">Delete</button>
+            <button v-on:click="editPost(index)" class="mx-1 p-1 rounded-1">
+              Edit
+            </button>
+            <button v-on:click="deletePost(index)" class="mx-1 p-1 rounded-1">
+              Delete
+            </button>
           </li>
         </ul>
+        <!-- <h2>{{post.creationDate}}</h2> -->
       </div>
     </main>
 
@@ -121,7 +134,7 @@
               author: "",
               raiting: "",
               status: "draft",
-              creationDate: "",
+              creationDate: new Date(),
               publicationDate: null,
             },
             posts: [],
@@ -172,8 +185,13 @@
           deletePost: function (index) {
             this.posts.splice(index, 1);
           },
+          creationDateGet: function () {
+            date = new Date();
+            return date.get
+          },
         },
       }).mount("#app");
     </script>
+    <script src="./../js/script.js"></script>
   </body>
 </html>

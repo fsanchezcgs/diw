@@ -226,15 +226,3 @@ footer {
   right: 8px;
   cursor: pointer;
 }
-
-/* PostManager */
-
-.insetText{
-  width: 300px;
-  height: 315px;
-  resize: none;
-}
-.content {
-  width: 450px;
-  background-color: aliceblue;
-}

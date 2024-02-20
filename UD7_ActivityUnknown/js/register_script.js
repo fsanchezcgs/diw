@@ -130,8 +130,7 @@ function storeUser(e) {
     const record = storage.add(obj);
     record.onsuccess = () => storeUserLogged(obj);
     record.onerror = () => {
-      let missatge = ` it's already used`;
-      showIncorrect(email, missatge);
+      showIncorrect(email, ` it's already used`);
     };
   }
 }

@@ -148,25 +148,7 @@ footer {
   float: left;
 }
 
-.cont1 {
-  margin-right: 0%;
-  width: 62%;
-  float: left;
-}
-
 .cont1 a {
-  color: black;
-  text-decoration: none;
-}
-
-.cont2 {
-  margin-left: 0%;
-  width: 30%;
-  float: right;
-  text-align: center;
-}
-
-.cont2 a {
   color: black;
   text-decoration: none;
 }

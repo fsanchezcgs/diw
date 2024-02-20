@@ -71,10 +71,19 @@
           <input v-model="post.title" type="text" name="title" class="m-1" />
           <textarea
             v-model="post.content"
-            maxlength="7F50"
+            maxlength="750"
             name="content"
-            class="m-1"
+            class="m-1 insetText"
           ></textarea>
+          <input v-on:change="getName" type="file" name="image" />
+          <label>
+            Author:
+            <select v-model="post.author" name="author">
+              <option value="Francisco">Francisco</option>
+              <option value="Ivan">Ivan</option>
+              <option value="Alvaro">Alvaro</option>
+            </select>
+          </label>
           <button
             v-on:click="insertPost"
             v-if="insert"
@@ -90,18 +99,26 @@
             Update
           </button>
         </form>
-        <ul class="m-1">
-          <li v-for="(posta, index) in posts">
-            {{posta.title}} {{posta.content}} {{index}}
-            <button v-on:click="editPost(index)" class="mx-1 p-1 rounded-1">
-              Edit
-            </button>
-            <button v-on:click="deletePost(index)" class="mx-1 p-1 rounded-1">
-              Delete
-            </button>
-          </li>
-        </ul>
-        <!-- <h2>{{post.creationDate}}</h2> -->
+        <div class="m-1">
+          <div
+            v-for="(posta, index) in posts"
+            class="bg-primary p-2 rounded-2 my-2"
+          >
+            <h4>{{posta.title}}</h4>
+            <p class="content rounded-2 p-2">{{posta.content}}</p>
+            <p class="m-0">Author: {{posta.author}}</p>
+            <p class="m-0">Creation Date: {{posta.creationDate}}</p>
+            <p class="m-0">Image: {{posta.image}}</p>
+            <div>
+              <button v-on:click="editPost(index)" class="mx-1 p-1 rounded-1">
+                Edit
+              </button>
+              <button v-on:click="deletePost(index)" class="mx-1 p-1 rounded-1">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -134,7 +151,7 @@
               author: "",
               raiting: "",
               status: "draft",
-              creationDate: new Date(),
+              creationDate: new Date().toLocaleDateString("en-GB"),
               publicationDate: null,
             },
             posts: [],
@@ -168,12 +185,12 @@
             let editedPost = {
               title: this.post.title,
               content: this.post.content,
-              image: this.posts[thiss.currentPost].image,
-              author: this.posts[thiss.currentPost].author,
-              raiting: this.posts[thiss.currentPost].raiting,
-              status: this.posts[thiss.currentPost].status,
-              creationDate: this.posts[thiss.currentPost].creationDate,
-              publicationDate: this.posts[thiss.currentPost].publicationDate,
+              image: this.posts[this.currentPost].image,
+              author: this.posts[this.currentPost].author,
+              raiting: this.posts[this.currentPost].raiting,
+              status: this.posts[this.currentPost].status,
+              creationDate: this.posts[this.currentPost].creationDate,
+              publicationDate: this.posts[this.currentPost].publicationDate,
             };
             this.posts.splice(this.currentPost, 1, editedPost);
             this.insert = true;
@@ -185,9 +202,8 @@
           deletePost: function (index) {
             this.posts.splice(index, 1);
           },
-          creationDateGet: function () {
-            date = new Date();
-            return date.get
+          getName: function (e) {
+            this.post.image = e.target.files[0].name;
           },
         },
       }).mount("#app");

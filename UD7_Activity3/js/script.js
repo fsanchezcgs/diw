@@ -6,6 +6,7 @@ let indexedDBLogged =
   window.shimIndexedDB;
 let dbLogged;
 let db;
+let user;
 
 function startDbLogged() {
   let request = indexedDBLogged.open("franciscoLoggedUser");
@@ -71,7 +72,7 @@ function showUser() {
     .getAll();
 
   requestUser.onsuccess = () => {
-    let user = requestUser.result;
+    user = requestUser.result;
     if (user.length != 0) {
       let settings = document.querySelector("#settings");
       settings.style.display = "block";

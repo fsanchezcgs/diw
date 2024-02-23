@@ -24,17 +24,9 @@
             v-model="post.content"
             maxlength="750"
             name="content"
-            class="m-1 insetText"
+            class="m-1 insertText"
           ></textarea>
           <input v-on:change="getName" type="file" name="image" />
-          <label>
-            Author:
-            <select v-model="post.author" name="author">
-              <option value="Francisco">Francisco</option>
-              <option value="Ivan">Ivan</option>
-              <option value="Alvaro">Alvaro</option>
-            </select>
-          </label>
           <button
             v-on:click="insertPost"
             v-if="insert"
@@ -56,8 +48,9 @@
             :title="posta.title"
             :content="posta.content"
             :author="posta.author"
-            :creationDate="posta.creationDate"
+            :creationdate="posta.creationDate"
             :image="posta.image"
+            :insert="insert"
             @edit-post="editPost(index)"
             @delete-post="deletePost(index)"
           ></Post>
@@ -67,7 +60,7 @@
     </main>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./../../js/script.js"></script>
+    <script src="./../../js/postManajer.js"></script>
     <script type="module">
       import Postheader from "./Postheader.js";
       import Postfooter from "./Postfooter.js";
@@ -83,8 +76,7 @@
               title: "",
               content: "",
               image: "",
-              author: "",
-              raiting: "",
+              raiting: null,
               status: "draft",
               creationDate: new Date().toLocaleDateString("en-GB"),
               publicationDate: null,
@@ -106,12 +98,13 @@
               title: this.post.title,
               content: this.post.content,
               image: this.post.image,
-              author: this.post.author,
+              author: user[0].userName,
               raiting: this.post.raiting,
               status: "draft",
               creationDate: this.post.creationDate,
               publicationDate: null,
             });
+            localStorage.setItem("posts", JSON.stringify(this.posts));
             this.post.title = "";
             this.post.content = "";
           },
@@ -145,10 +138,18 @@
           },
           deletePost: function (index) {
             this.posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
           },
           getName: function (e) {
             this.post.image = e.target.files[0].name;
           },
+        },
+        mounted() {
+          if (JSON.parse(localStorage.getItem("posts")).length != 0) {
+            this.posts = JSON.parse(localStorage.getItem("posts"));
+          } else {
+            console.log("No posts");
+          }
         },
       }).mount("#app");
     </script>

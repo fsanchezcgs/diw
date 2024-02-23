@@ -208,3 +208,14 @@ footer {
   right: 8px;
   cursor: pointer;
 }
+
+
+.insertText{
+  width: 300px;
+  height: 315px;
+  resize: none;
+}
+.contentPost {
+  width: 450px;
+  background-color: aliceblue;
+}

@@ -26,7 +26,12 @@
             name="content"
             class="m-1 insertText"
           ></textarea>
-          <input v-on:change="getName" type="file" name="image" />
+          <input
+            v-on:change="getName"
+            type="file"
+            name="image"
+            accept="image/png, image/jpg"
+          />
           <button
             v-on:click="insertPost"
             v-if="insert"
@@ -60,7 +65,7 @@
     </main>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./../../js/postManajer.js"></script>
+    <script src="./../../js/postManager.js"></script>
     <script type="module">
       import Postheader from "./Postheader.js";
       import Postfooter from "./Postfooter.js";
@@ -145,7 +150,9 @@
           },
         },
         mounted() {
-          if (JSON.parse(localStorage.getItem("posts")).length != 0) {
+          if (JSON.parse(localStorage.getItem("posts")) === null) {
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          } else if (JSON.parse(localStorage.getItem("posts")).length != 0) {
             this.posts = JSON.parse(localStorage.getItem("posts"));
           } else {
             console.log("No posts");

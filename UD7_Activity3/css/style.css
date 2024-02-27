@@ -46,6 +46,7 @@ header {
 }
 
 #admin,
+#postsManager,
 #profile,
 #settings {
   display: none;
@@ -209,8 +210,7 @@ footer {
   cursor: pointer;
 }
 
-
-.insertText{
+.insertText {
   width: 300px;
   height: 315px;
   resize: none;

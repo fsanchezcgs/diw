@@ -25,6 +25,7 @@ export default {
           <li class="nav-item" id="admin">
             <a class="nav-link" href="./../admin.html">Admin</a>
           </li>
+          <li class="nav-item" id="postsManager"></li>
           <li class="nav-item" id="settings">
             <a class="nav-link" href="./../settings.html">Settings</a>
           </li>

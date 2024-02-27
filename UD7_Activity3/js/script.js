@@ -78,6 +78,8 @@ function showUser() {
       settings.style.display = "block";
       let admin = document.querySelector("#admin");
       admin.style.display = "block";
+      let postsManager = document.querySelector("#postsManager");
+      postsManager.style.display = "block";
       let profilePicture = document.querySelector("#profile");
       profilePicture.style.display = "block";
       profilePicture.src += user[0]["userAvatar"] + ".jpg";

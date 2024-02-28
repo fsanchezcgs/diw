@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doggie</title>
+    <link rel="stylesheet" href="./../css/custom.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <link rel="icon" href="./../img/logoIcon.png" />
+  </head>
+  <body class="d-block">
+    <main
+      id="app"
+      class="d-flex justify-content-center align-items-center flex-column min-vh-100"
+    >
+      <Postheader class="w-100"></Postheader>
+      <div>
+        <Formpost></Formpost>
+        <div class="m-1">
+          <Post
+            v-for="(posta, index) in posts"
+            :title="posta.title"
+            :content="posta.content"
+            :author="posta.author"
+            :creationdate="posta.creationDate"
+            :image="posta.image"
+            :insert="insert"
+            @edit-post="editPost(index)"
+            @delete-post="deletePost(index)"
+          ></Post>
+        </div>
+      </div>
+      <Postfooter class="w-100"></Postfooter>
+    </main>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./../js/postManager.js"></script>
+    <script type="module">
+      import Postheader from "./components/Postheader.js";
+      import Postfooter from "./components/Postfooter.js";
+      import Formpost from "./components/Formpost.js";
+      import Post from "./components/Post.js";
+
+      const { createApp } = Vue;
+
+      let app = createApp({
+        data() {
+          return {
+            pageTitle: "Create Post",
+            post: {
+              title: "",
+              content: "",
+              image: "",
+              raiting: null,
+              status: "draft",
+              creationDate: new Date().toLocaleDateString("en-GB"),
+              publicationDate: null,
+            },
+            posts: [],
+            insert: true,
+            currentPost: 0,
+          };
+        },
+        components: {
+          Postheader,
+          Postfooter,
+          Formpost,
+          Post,
+        },
+        methods: {
+          insertPost: function (e) {
+            e.preventDefault();
+            this.posts.push({
+              title: this.post.title,
+              content: this.post.content,
+              image: this.post.image,
+              author: user[0].userName,
+              raiting: this.post.raiting,
+              status: "draft",
+              creationDate: this.post.creationDate,
+              publicationDate: null,
+            });
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+            this.post.title = "";
+            this.post.content = "";
+          },
+          editPost: function (index) {
+            this.pageTitle = "Edit Post";
+            this.insert = false;
+            this.currentPost = index;
+            this.post.title = this.posts[index].title;
+            this.post.content = this.posts[index].content;
+            this.post.author = this.posts[index].author;
+            this.post.image = this.posts[index].image;
+          },
+          updatePost: function (e) {
+            e.preventDefault();
+            let editedPost = {
+              title: this.post.title,
+              content: this.post.content,
+              image: this.posts[this.currentPost].image,
+              author: this.posts[this.currentPost].author,
+              raiting: this.posts[this.currentPost].raiting,
+              status: this.posts[this.currentPost].status,
+              creationDate: this.posts[this.currentPost].creationDate,
+              publicationDate: this.posts[this.currentPost].publicationDate,
+            };
+            this.posts.splice(this.currentPost, 1, editedPost);
+            this.insert = true;
+            this.currentPost = 0;
+            this.pageTitle = "Create Post";
+            this.post.title = "";
+            this.post.content = "";
+          },
+          deletePost: function (index) {
+            this.posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          },
+          getName: function (e) {
+            this.post.image = e.target.files[0].name;
+          },
+        },
+        mounted() {
+          if (JSON.parse(localStorage.getItem("posts")) === null) {
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          } else if (JSON.parse(localStorage.getItem("posts")).length != 0) {
+            this.posts = JSON.parse(localStorage.getItem("posts"));
+          } else {
+            console.log("No posts");
+          }
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

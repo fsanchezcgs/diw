@@ -15,7 +15,24 @@
     >
       <Postheader class="w-100"></Postheader>
       <div>
-        <Formpost></Formpost>
+        <router-view
+          :pagetitle="pageTitle"
+          :post="post"
+          :posts="posts"
+          :insert="insert"
+          :currentpost="currentPost"
+          @update="updatePost()"
+          @edit-post="editPost(index)"
+          @delete-post="deletePost(index)"
+        ></router-view>
+        <!-- <Formpost
+          :pagetitle="pageTitle"
+          :post="post"
+          :posts="posts"
+          :insert="insert"
+          :currentpost="currentPost"
+          @update="updatePost()"
+        ></Formpost>
         <div class="m-1">
           <Post
             v-for="(posta, index) in posts"
@@ -28,25 +45,24 @@
             @edit-post="editPost(index)"
             @delete-post="deletePost(index)"
           ></Post>
-        </div>
+        </div> -->
       </div>
       <Postfooter class="w-100"></Postfooter>
     </main>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
     <script src="./../js/postManager.js"></script>
     <script type="module">
       import Postheader from "./components/Postheader.js";
       import Postfooter from "./components/Postfooter.js";
-      import Formpost from "./components/Formpost.js";
-      import Post from "./components/Post.js";
+      import router from "./router.js";
 
       const { createApp } = Vue;
 
       let app = createApp({
         data() {
           return {
-            pageTitle: "Create Post",
             post: {
               title: "",
               content: "",
@@ -56,6 +72,7 @@
               creationDate: new Date().toLocaleDateString("en-GB"),
               publicationDate: null,
             },
+            pageTitle: "Create Post",
             posts: [],
             insert: true,
             currentPost: 0,
@@ -64,26 +81,10 @@
         components: {
           Postheader,
           Postfooter,
-          Formpost,
-          Post,
+          // Formpost,
+          // Post,
         },
         methods: {
-          insertPost: function (e) {
-            e.preventDefault();
-            this.posts.push({
-              title: this.post.title,
-              content: this.post.content,
-              image: this.post.image,
-              author: user[0].userName,
-              raiting: this.post.raiting,
-              status: "draft",
-              creationDate: this.post.creationDate,
-              publicationDate: null,
-            });
-            localStorage.setItem("posts", JSON.stringify(this.posts));
-            this.post.title = "";
-            this.post.content = "";
-          },
           editPost: function (index) {
             this.pageTitle = "Edit Post";
             this.insert = false;
@@ -93,8 +94,12 @@
             this.post.author = this.posts[index].author;
             this.post.image = this.posts[index].image;
           },
-          updatePost: function (e) {
-            e.preventDefault();
+          deletePost: function (index) {
+            this.posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          },
+          updatePost: function () {
+            console.log(this.currentpost);
             let editedPost = {
               title: this.post.title,
               content: this.post.content,
@@ -105,22 +110,17 @@
               creationDate: this.posts[this.currentPost].creationDate,
               publicationDate: this.posts[this.currentPost].publicationDate,
             };
-            this.posts.splice(this.currentPost, 1, editedPost);
+            this.posts.splice(this.currentpost, 1, editedPost);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
             this.insert = true;
             this.currentPost = 0;
             this.pageTitle = "Create Post";
             this.post.title = "";
             this.post.content = "";
           },
-          deletePost: function (index) {
-            this.posts.splice(index, 1);
-            localStorage.setItem("posts", JSON.stringify(this.posts));
-          },
-          getName: function (e) {
-            this.post.image = e.target.files[0].name;
-          },
         },
         mounted() {
+          this.$router.push("/");
           if (JSON.parse(localStorage.getItem("posts")) === null) {
             localStorage.setItem("posts", JSON.stringify(this.posts));
           } else if (JSON.parse(localStorage.getItem("posts")).length != 0) {
@@ -129,7 +129,9 @@
             console.log("No posts");
           }
         },
-      }).mount("#app");
+      })
+        .use(router)
+        .mount("#app");
     </script>
   </body>
 </html>

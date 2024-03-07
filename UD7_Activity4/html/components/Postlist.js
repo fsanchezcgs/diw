@@ -2,6 +2,7 @@ import Post from "./Post.js";
 export default {
   name: "Postlist",
   props: ["insert", "posts"],
+  emits: ["editpost", "deletepost"],
   components: {
     Post,
   },
@@ -9,6 +10,14 @@ export default {
     showForm: function () {
       console.log("object");
       this.$router.push("/Formpost");
+    },
+    editPost: function (index) {
+      //s'index no s'envia :(
+      this.$emit("editpost", index);
+    },
+    deletePost: function (index) {
+      //s'index no s'envia :(
+      this.$emit("deletepost", index);
     },
   },
   template: `
@@ -18,8 +27,8 @@ export default {
       v-for="(posta, index) in posts"
       :posta="posta"
       :insert="insert"
-      @edit-post="editPost(index)"
-      @delete-post="deletePost(index)"
+      @editpost="editPost(index)"
+      @deletepost="deletePost(index)"
     ></Post>
   </div>`,
 };

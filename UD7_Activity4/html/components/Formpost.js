@@ -18,13 +18,12 @@ export default {
       localStorage.setItem("posts", JSON.stringify(this.posts));
       this.post.title = "";
       this.post.content = "";
-      this.$router.push("/")
+      this.$router.push("/");
     },
     getName: function (e) {
       this.post.image = e.target.files[0].name;
     },
     updatePost: function () {
-      console.log("object");
       this.$emit("update");
     },
   },

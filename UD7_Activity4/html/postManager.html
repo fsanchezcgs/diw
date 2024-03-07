@@ -22,8 +22,8 @@
           :insert="insert"
           :currentpost="currentPost"
           @update="updatePost()"
-          @edit-post="editPost(index)"
-          @delete-post="deletePost(index)"
+          @editpost="editPost(index)"
+          @deletepost="deletePost(index)"
         ></router-view>
         <!-- <Formpost
           :pagetitle="pageTitle"
@@ -86,6 +86,7 @@
         },
         methods: {
           editPost: function (index) {
+            console.log(index);
             this.pageTitle = "Edit Post";
             this.insert = false;
             this.currentPost = index;
@@ -93,8 +94,10 @@
             this.post.content = this.posts[index].content;
             this.post.author = this.posts[index].author;
             this.post.image = this.posts[index].image;
+            this.$router.push("/Formpost");
           },
           deletePost: function (index) {
+            // console.log(index);
             this.posts.splice(index, 1);
             localStorage.setItem("posts", JSON.stringify(this.posts));
           },

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doggie</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+    <script src="https://unpkg.com/vue-demi"></script>
+    <script src="https://unpkg.com/pinia"></script>
+    <link rel="stylesheet" href="./../css/custom.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <link rel="icon" href="./../img/logoIcon.png" />
+  </head>
+  <body class="d-block">
+    <main
+      id="app"
+      class="d-flex justify-content-center align-items-center flex-column min-vh-100"
+    >
+      <Postheader class="w-100"></Postheader>
+      <div>
+        <router-view
+          :pagetitle="pageTitle"
+          :post="post"
+          :posts="posts"
+          :insert="insert"
+          :currentpost="currentPost"
+          @update="updatePost"
+          @editpost="editPost"
+          @deletepost="deletePost"
+        ></router-view>
+      </div>
+      <Postfooter class="w-100"></Postfooter>
+    </main>
+
+    <script src="./../js/postManager.js"></script>
+    <script type="module">
+      import Postheader from "./components/Postheader.js";
+      import Postfooter from "./components/Postfooter.js";
+      import router from "./router.js";
+
+      const { createApp } = Vue;
+
+      let app = createApp({
+        data() {
+          return {
+            post: {
+              title: "",
+              content: "",
+              image: "",
+              raiting: null,
+              status: "draft",
+              creationDate: new Date().toLocaleDateString("en-GB"),
+              publicationDate: null,
+            },
+            pageTitle: "Create Post",
+            posts: [],
+            insert: true,
+            currentPost: 0,
+          };
+        },
+        components: {
+          Postheader,
+          Postfooter,
+        },
+        methods: {
+          editPost: function (index) {
+            this.pageTitle = "Edit Post";
+            this.insert = false;
+            this.currentPost = index;
+            this.post.title = this.posts[index].title;
+            this.post.content = this.posts[index].content;
+            this.post.author = this.posts[index].author;
+            this.post.image = this.posts[index].image;
+            this.$router.push("/Formpost");
+          },
+          deletePost: function (index) {
+            this.posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          },
+          updatePost: function () {
+            let editedPost = {
+              title: this.post.title,
+              content: this.post.content,
+              image: this.posts[this.currentPost].image,
+              author: this.posts[this.currentPost].author,
+              raiting: this.posts[this.currentPost].raiting,
+              status: this.posts[this.currentPost].status,
+              creationDate: this.posts[this.currentPost].creationDate,
+              publicationDate: this.posts[this.currentPost].publicationDate,
+            };
+            this.posts.splice(this.currentpost, 1, editedPost);
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+            this.insert = true;
+            this.currentPost = 0;
+            this.pageTitle = "Create Post";
+            this.post.title = "";
+            this.post.content = "";
+            this.$router.push("/")
+          },
+        },
+        mounted() {
+          this.$router.push("/");
+          if (JSON.parse(localStorage.getItem("posts")) === null) {
+            localStorage.setItem("posts", JSON.stringify(this.posts));
+          } else if (JSON.parse(localStorage.getItem("posts")).length != 0) {
+            this.posts = JSON.parse(localStorage.getItem("posts"));
+          } else {
+            console.log("No posts");
+          }
+        },
+      })
+        .use(router)
+        .mount("#app");
+    </script>
+  </body>
+</html>
